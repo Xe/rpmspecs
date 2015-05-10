@@ -11,8 +11,7 @@ Source0:        https://github.com/Xe/macarena/archive/v%{version}.tar.gz
 
 BuildRequires:  gcc
 BuildRequires:  golang >= 1.3
-
-# pull in golang libraries by explicit import path, inside the meta golang()
+ExclusiveArch:  %{go_arches}
 
 %description
 Macarena is a relay bot for IRC channels spanning many networks. It runs simply and leaves as little state as possible.
@@ -40,4 +39,3 @@ install -p -m 0755 macarena %{buildroot}%{_bindir}/macarena
 %changelog
 * Sat May 09 2015 Xena <xena@yolo-swag.com> - 0.5
 - package macarena
-
