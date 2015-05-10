@@ -10,7 +10,7 @@ URL:            https://github.com/Xe/macarena
 Source0:        https://github.com/Xe/macarena/archive/v%{version}.tar.gz
 
 BuildRequires:  gcc
-BuildRequires:  golang >= 1.2-7
+BuildRequires:  golang >= 1.3
 
 # pull in golang libraries by explicit import path, inside the meta golang()
 
