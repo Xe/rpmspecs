@@ -4,7 +4,7 @@
 Name:           macarena
 Version:        0.5
 Release:        6%{?dist}
-Summary:        This application is an example for the golang binary RPM spec
+Summary:        An IRC bot for communities spanning networks.
 License:        Unlicense
 URL:            https://github.com/Xe/macarena
 Source0:        https://github.com/Xe/macarena/archive/v%{version}.tar.gz
@@ -22,20 +22,20 @@ Macarena is a relay bot for IRC channels spanning many networks. It runs simply 
 
 %build
 # set up temporary build gopath, and put our directory there
-mkdir -p ./_build/src/
-
-export GOPATH=$(pwd)/_build:%{gopath}
-go get github.com/constabulary/gb/...
-$(pwd)/_build/bin/gb build
+export GOPATH=$(pwd):$(pwd)/vendor
+function gobuild { go build -a -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n')" -v -x "$@"; }
+cd src/cmd/macarena
+gobuild ./...
+cp macarena ../../..
 
 %install
 install -d %{buildroot}%{_bindir}
-install -p -m 0755 ./bin/macarena %{buildroot}%{_bindir}/example-app
+install -p -m 0755 macarena %{buildroot}%{_bindir}/macarena
 
 %files
 %defattr(-,root,root,-)
 %doc UNLICENSE README.md
-%{_bindir}/bin/macarena
+%{_bindir}/macarena
 
 %changelog
 * Sat May 09 2015 Xena <xena@yolo-swag.com> - 0.5
