@@ -1,0 +1,16 @@
+[Unit]
+Description=elemental-ircd
+After=network.target
+
+[Service]
+User=ircd
+ExecStart=/usr/bin/ircd -foreground
+
+TimeoutSec=300
+LimitNOFILE=65535
+Restart=always
+NoNewPrivileges=true
+OOMScoreAdjust=-1000
+
+[Install]
+WantedBy=multi-user.target
