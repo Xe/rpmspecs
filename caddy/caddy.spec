@@ -1,6 +1,6 @@
 Name:           caddy
 Version:        0.8.1
-Release:        0%{?dist}
+Release:        1%{?dist}
 Summary:        Caddy is a lightweight, general-purpose web server for Windows, Mac, Linux, BSD and Android written in GoLang.
 BuildArch:      x86_64
 
@@ -8,7 +8,12 @@ URL:		https://caddyserver.com/
 License:        Apache License, Version 2.0
 Group:          System Environment/Daemons
 
+BuildRequires: systemd
+Requires(post): systemd
+
 Source0:	caddy_linux_amd64_custom.tar.gz
+Source1:	Caddyfile
+Source2:	caddy.service
 
 %description
 Caddy is a lightweight, general-purpose web server for Windows, 
@@ -38,12 +43,17 @@ hugo, ipfilter, jsonp and search.
 mkdir -p %{buildroot}/%{_bindir}
 cp -a caddy %{buildroot}/%{_bindir}/caddy
 
+install -D -m644 %{SOURCE2} $RPM_BUILD_ROOT/%{_unitdir}/caddy.service
+install -D -m644 %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/caddy/Caddyfile.example
+
 %clean
 rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
 %attr(755, root, root) %{_bindir}/caddy
+%{_sysconfdir}/caddy/Caddyfile.example
+%{_unitdir}/caddy.service
 
 %doc CHANGES.txt README.txt
 %license LICENSES.txt
@@ -51,8 +61,12 @@ rm -rf %{buildroot}
 
 %post
 setcap cap_net_bind_service=+ep %{_bindir}/caddy
+%systemd_post caddy.service
 
 %changelog
+* Tue Jan 12 2016 Christine Dodrill <me@christine.website>
+- Add systemd unit and example Caddyfile
+
 * Tue Jan 12 2016 Christine Dodrill <me@christine.website>
 - Update to Caddy 0.8.1.
 - Enable all features.
