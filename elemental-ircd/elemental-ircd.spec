@@ -3,7 +3,7 @@
 %global _hardened_build 1
 
 Name:       elemental-ircd
-Version:    6.6.2
+Version:    6.6.3
 Release:    1%{?dist}
 Summary:    A high performance, lightweight and scalable IRC daemon
 
@@ -107,5 +107,8 @@ useradd -r -g ircd -d /run/elemental-ircd -s /sbin/nologin \
 
 
 %changelog
+* Tue Jan 12 2016 Christine Dodrill <me@christine.website> - 6.6.3
+- Upgrade to 6.6.3
+
 * Fri Jun 26 2015 Christine Dodrill <me@christine.website> - 6.6.2
 - Initial packaging
