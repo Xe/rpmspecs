@@ -4,7 +4,7 @@
 #global src_suffix -2
 
 Name:           lua-moonscript
-Version:        0.3.1
+Version:        0.4.0
 Release:        3%{?dist}
 Summary:        A little language that compiles to Lua
 
@@ -77,6 +77,9 @@ cp -pr moon moonscript $RPM_BUILD_ROOT%{luapkgdir}/
 
 
 %changelog
+* Tue Jan 12 2016 Christine Dodrill <me@christine.website> - 0.4.0
+- update to 0.4.0
+
 * Thu Jan 15 2015 Tom Callaway <spot@fedoraproject.org> - 0.2.4-4
 - rebuild for lua 5.3
 
