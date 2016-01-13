@@ -1,6 +1,6 @@
 Name:           caddy
 Version:        0.8.1
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Caddy is a lightweight, general-purpose web server for Windows, Mac, Linux, BSD and Android written in GoLang.
 BuildArch:      x86_64
 
@@ -48,6 +48,12 @@ install -D -m644 %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/caddy/Caddyfile.exampl
 
 %clean
 rm -rf %{buildroot}
+
+%pre
+getent group caddy  >/dev/null || groupadd -r caddy
+getent passwd caddy >/dev/null || \
+useradd -r -g caddy -d /var/lib/caddy -s /sbin/nologin \
+    -c "caddy user" caddy
 
 %files
 %defattr(-,root,root,-)
