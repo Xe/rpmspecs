@@ -5,6 +5,7 @@ After=network.target
 [Service]
 User=ircd
 ExecStart=/usr/bin/ircd -foreground
+ExecReload=/bin/kill -HUP $MAINPID
 
 TimeoutSec=300
 LimitNOFILE=65535
