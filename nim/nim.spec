@@ -1,7 +1,7 @@
 Name: nim
 Group: Development/Languages
-Version: 0.12.0
-Release: v0.12.0%{?dist}
+Version: 0.13.0
+Release: v0.13.0%{?dist}
 Summary: A compiled, garbage-collected systems programming language
 License: MIT
 Source0: http://nim-lang.org/download/%{name}-%{version}.tar.xz
@@ -49,6 +49,9 @@ rmdir %{buildroot}/nim
 
 
 %changelog
+* Mon Jan 18 2016 Christine Dodrill <me@christine.website> - 0.13.0
+- Update to 0.13.0
+
 * Tue Jan 12 2016 Christine Dodrill <me@christine.website> - 0.12.0
 - Update to 0.12.0
 
