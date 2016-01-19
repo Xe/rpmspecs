@@ -1,0 +1,32 @@
+From e7886eee1d9eefdbe086974e534ee1ae2fcd124f Mon Sep 17 00:00:00 2001
+From: Sergey Avseyev <sergey.avseyev@gmail.com>
+Date: Tue, 4 Aug 2015 14:45:05 +0300
+Subject: [PATCH] Include all documentation into installer
+
+---
+ compiler/installer.ini | 9 ++++-----
+ 1 file changed, 4 insertions(+), 5 deletions(-)
+
+diff --git a/compiler/installer.ini b/compiler/installer.ini
+index c8af388..bc0b7b5 100644
+--- a/compiler/installer.ini
++++ b/compiler/installer.ini
+@@ -37,11 +37,10 @@ Files: "config/nimdoc.cfg"
+ Files: "config/nimdoc.tex.cfg"
+ 
+ [Documentation]
+-; Files: "doc/*.html"
+-; Files: "doc/*.cfg"
+-; Files: "doc/*.pdf"
+-; Files: "doc/*.ini"
+-Files: "doc/overview.html"
++Files: "doc/*.html"
++Files: "doc/*.cfg"
++Files: "doc/*.pdf"
++Files: "doc/*.ini"
+ Start: "doc/overview.html"
+ 
+ 
+-- 
+1.8.3.1
+

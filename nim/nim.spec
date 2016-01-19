@@ -1,10 +1,11 @@
 Name: nim
 Group: Development/Languages
 Version: 0.13.0
-Release: v0.13.0%{?dist}
+Release: 2%{?dist}
 Summary: A compiled, garbage-collected systems programming language
 License: MIT
 Source0: http://nim-lang.org/download/%{name}-%{version}.tar.xz
+Patch0: 2969.patch
 URL: http://nim-lang.org
 
 BuildRequires: pcre-devel
@@ -15,7 +16,7 @@ productivity/performance ratio. Nim's design focuses on efficiency, expressivene
 
 %prep
 %setup -q
-# %patch0 -p1
+%patch0 -p1
 
 %build
 ./build.sh
@@ -27,18 +28,14 @@ productivity/performance ratio. Nim's design focuses on efficiency, expressivene
 %{__mkdir_p} %{buildroot}%{_datadir}/nim
 %{__mkdir_p} %{buildroot}%{_prefix}/lib
 
-%{__mv} %{buildroot}/nim/bin      %{buildroot}%{_bindir}
-%{__mv} %{buildroot}/nim/config   %{buildroot}%{_sysconfdir}
-%{__mv} %{buildroot}/nim/lib      %{buildroot}%{_prefix}/lib/nim
-%{__mv} %{buildroot}/nim/doc      %{buildroot}%{_datadir}/nim/doc
-rmdir %{buildroot}/nim
+%{__mv} %{buildroot}/nim/bin                     %{buildroot}%{_bindir}
+%{__mv} %{buildroot}/nim/config                  %{buildroot}%{_sysconfdir}
+%{__mv} %{buildroot}/nim/lib                     %{buildroot}%{_prefix}/lib/nim
+%{__mv} %{buildroot}/nim/doc                     %{buildroot}%{_datadir}/nim/doc
 
 %check
 #./bin/nim c koch
 #PATH=./bin:$PATH ./koch tests --pedantic category lib
-
-%clean
-%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
