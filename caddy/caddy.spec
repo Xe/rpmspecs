@@ -1,5 +1,5 @@
 Name:           caddy
-Version:        0.8.1
+Version:        0.8.2
 Release:        3%{?dist}
 Summary:        Caddy is a lightweight, general-purpose web server for Windows, Mac, Linux, BSD and Android written in GoLang.
 BuildArch:      x86_64
@@ -70,6 +70,10 @@ setcap cap_net_bind_service=+ep %{_bindir}/caddy
 %systemd_post caddy.service
 
 %changelog
+* Mon Feb 29 2016 Christine Dodrill <me@christine.website>
+- Update to Caddy 0.8.2.
+- Enable all features
+
 * Tue Jan 12 2016 Christine Dodrill <me@christine.website>
 - Add systemd unit and example Caddyfile
 
