@@ -21,7 +21,7 @@ Caddy is a lightweight, general-purpose web server for Windows,
 Mac, Linux, BSD and Android. It is a capable alternative to
 other popular and easy to use web servers.
 
-The most notable features are HTTP/2, Let's Encrypt support,'
+The most notable features are HTTP/2, Let's Encrypt support,
 Virtual Hosts, TLS + SNI, and easy configuration with a
 Caddyfile. In development, you usually put one Caddyfile with
 each site. In production, Caddy serves HTTPS by default and
