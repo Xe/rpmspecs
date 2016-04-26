@@ -10,6 +10,7 @@ LimitNOFILE=4096
 ExecStart=/usr/bin/caddy -agree -conf /etc/caddy/Caddyfile
 Restart=on-failure
 StartLimitInterval=600
+EnvironmentFile=/etc/caddy/environment
 
 [Install]
 WantedBy=multi-user.target
