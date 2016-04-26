@@ -61,6 +61,7 @@ useradd -r -g caddy -d /var/lib/caddy -s /sbin/nologin \
 %defattr(-,root,root,-)
 %attr(755, root, root) %{_bindir}/caddy
 %{_sysconfdir}/caddy/Caddyfile.example
+%{_sysconfdir}/caddy/environment
 %{_unitdir}/caddy.service
 
 %doc CHANGES.txt README.txt
