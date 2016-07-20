@@ -1,6 +1,6 @@
 Name:           caddy
 Version:        0.9.0
-Release:        0%{?dist}
+Release:        1%{?dist}
 Summary:        Caddy is a lightweight, general-purpose web server for Windows, Mac, Linux, BSD and Android written in GoLang.
 BuildArch:      x86_64
 
@@ -44,6 +44,7 @@ hugo, ipfilter, jsonp and search.
 mkdir -p %{buildroot}/%{_bindir}
 cp -a caddy %{buildroot}/%{_bindir}/caddy
 
+install -d -m755 $RPM_BUILD_ROOT/%{_sharedstatedir}/caddy
 install -D -m644 %{SOURCE2} $RPM_BUILD_ROOT/%{_unitdir}/caddy.service
 install -D -m644 %{SOURCE1} $RPM_BUILD_ROOT/%{_sysconfdir}/caddy/Caddyfile.example
 install -D -m644 %{SOURCE3} $RPM_BUILD_ROOT/%{_sysconfdir}/caddy/environment
@@ -63,6 +64,7 @@ useradd -r -g caddy -d /var/lib/caddy -s /sbin/nologin \
 %{_sysconfdir}/caddy/Caddyfile.example
 %{_sysconfdir}/caddy/environment
 %{_unitdir}/caddy.service
+%dir %attr(755, caddy, caddy) %{_sharedstatedir}/caddy
 
 %doc CHANGES.txt README.txt
 %license LICENSES.txt
@@ -73,6 +75,9 @@ setcap cap_net_bind_service=+ep %{_bindir}/caddy
 %systemd_post caddy.service
 
 %changelog
+* Wed Jul 20 2016 Alan Ivey <alanivey@gmail.com>
+- Manage the /var/lib/caddy directory
+
 * Tue Jul 19 2016 Cadey Dodrill <me@christine.website>
 - Update to 0.9.0
 
