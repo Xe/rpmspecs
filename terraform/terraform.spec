@@ -1,14 +1,15 @@
 name:           terraform
-Version:        0.6.14
+Version:        0.6.16
 Release:        0%{?dist}
 Summary:        INFRASTRUCTURE AS CODE
 ExclusiveArch:  x86_64
+BuildRequires:  upx
 
 URL:            https://terraform.io
 License:        Apache License, Version 2.0
 Group:          System Environment/Daemons
 
-Source0:        terraform_0.6.14_linux_amd64.zip
+Source0:        terraform_0.6.16_linux_amd64.zip
 
 %description
 Terraform provides a common configuration to launch infrastructure — from physical and virtual servers to email and DNS providers. Once launched, Terraform safely and efficiently changes infrastructure as the configuration is evolved.
@@ -26,6 +27,8 @@ Simple file based configuration gives you a single view of your entire infrastru
 
 %install
 mkdir -p %{buildroot}/%{_bindir}
+
+upx *
 
 cp -a terraform %{buildroot}/%{_bindir}
 cp -a terraform-provider-atlas %{buildroot}/%{_bindir}
@@ -115,5 +118,9 @@ rm -rf %{buildroot}
 %attr(755, root, root) %{_bindir}/terraform-provisioner-remote-exec
 
 %changelog
+* Thu Jul 21 2016 Cadey Dodrill <me@christine.website>
+- Update to 0.6.16
+- Pack all binaries with `upx` to reduce install size
+
 * Mon Apr 18 2016 Christine Dodrill <me@christine.website>
 - Initial packaging
